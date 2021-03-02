@@ -1,0 +1,19 @@
+
+.container {
+    margin-top: 20px; padding: 10px;
+    max-width: 1200px;
+}
+
+h1 {
+    background-color:#5B2C6F;
+    color:  #FDFEFE;
+    text-align: center;
+}
+
+.checked {
+    font-style: italic;
+}
+
+i {
+    color: #5B2C6F;
+}
