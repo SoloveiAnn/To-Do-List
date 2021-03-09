@@ -1,16 +1,20 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "tasks-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.css"],
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   tasks: any;
   newTask: string;
   taskObj: any;
 
   constructor() {
+    
+  }
+
+  ngOnInit(): void{
     this.newTask = "";
     this.tasks = [];
   }
@@ -32,5 +36,9 @@ export class ListComponent {
       if (this.tasks[i].completed) {
         this.tasks.splice(index, 1);
       }
+  }
+
+  deleteCurrentTask(index){
+    this.tasks.splice(index, 1);
   }
 }
