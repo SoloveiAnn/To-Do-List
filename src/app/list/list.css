@@ -17,3 +17,7 @@ h1 {
 i {
     color: #5B2C6F;
 }
+
+.ng-invalid:not(form).ng-touched {
+    border: 1px solid red;
+}

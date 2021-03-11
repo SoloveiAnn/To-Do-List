@@ -20,11 +20,13 @@
         <div class="row">
             <div class="col-6">
                 <div class="input-group mb-3">
-                    <input [(ngModel)]="newTask" name="newTask" (keyup.enter)="newTask=''" type="text" class="form-control" placeholder="Add your task" maxlength="300" required>
+                    <input [(ngModel)]="newTask" name="newTask" (keyup.enter)="newTask=''" type="text" 
+                    class="form-control" placeholder="Add your task" maxlength="300" required #taskField="ngModel">
                 </div>
+                <em [hidden]="taskField.value !== ' '" class="atert"> Only letters and numbers </em>
             </div>
             <div class="col">
-                <button class="btn" [disabled]="newTask===''" (click)="addTasks()">
+                <button class="btn" [disabled]="newTask==='' || newTask===' '" (click)="addTasks(); getTasks()">
                     <i class="fas fa-plus fa-2x"></i>
                 </button>
             </div>

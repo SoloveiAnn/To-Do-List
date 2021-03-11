@@ -1,15 +1,19 @@
 import { Component, OnInit } from "@angular/core";
+import { Observable, of } from "rxjs";
 
 @Component({
   selector: "tasks-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.css"],
 })
+
+
+
 export class ListComponent implements OnInit {
   tasks: any;
   newTask: string;
   taskObj: any;
-
+  
   constructor() {
     
   }
@@ -17,6 +21,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void{
     this.newTask = "";
     this.tasks = [];
+
   }
 
   addTasks(event) {
@@ -24,11 +29,20 @@ export class ListComponent implements OnInit {
       newTask: this.newTask,
       completed: false,
     };
-    if (this.newTask == "") {
-    } else {
       this.tasks.push(this.taskObj);
       this.newTask = "";
+
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+
+  }
+  
+  getTasks(): Observable<any> {
+    if(localStorage.getItem('tasks') === null) {
+      this.tasks = [];
+    } else {
+      this.tasks = JSON.parse(localStorage.getItem('tasks'));
     }
+    return of(this.tasks)
   }
 
   deleteTask(index) {
@@ -41,4 +55,7 @@ export class ListComponent implements OnInit {
   deleteCurrentTask(index){
     this.tasks.splice(index, 1);
   }
+
+  
+
 }
